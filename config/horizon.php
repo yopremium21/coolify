@@ -179,7 +179,7 @@ return [
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit' => env('HORIZON_MEMORY_LIMIT', 64),
 
     /*
     |--------------------------------------------------------------------------
@@ -198,8 +198,8 @@ return [
             'balance' => env('HORIZON_BALANCE', 'false'),
             'queue' => env('HORIZON_QUEUES', 'high,default'),
             'maxTime' => env('HORIZON_MAX_TIME', 0),
-            'maxJobs' => 400,
-            'memory' => 128,
+            'maxJobs' => env('HORIZON_MAX_JOBS', 400),
+            'memory' => env('HORIZON_WORKER_MEMORY', 128),
             'tries' => 1,
             'nice' => 0,
             'sleep' => 3,
