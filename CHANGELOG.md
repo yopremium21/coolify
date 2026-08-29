@@ -7251,6 +7251,7 @@ All notable changes to this project will be documented in this file.
 - *(ui)* Clarify application image retention cleanup options
 - Design external TLS redirect control
 - Update changelog
+- Update changelog
 
 ### ⚡ Performance
 
