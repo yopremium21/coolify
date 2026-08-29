@@ -44,7 +44,13 @@ RUN docker-php-serversideup-set-id www-data $USER_ID:$GROUP_ID && \
 WORKDIR /var/www/html
 COPY --chown=www-data:www-data composer.json composer.lock ./
 RUN --mount=type=cache,target=/tmp/cache \
-    COMPOSER_CACHE_DIR=/tmp/cache composer install --no-dev --no-interaction --no-plugins --no-scripts --prefer-dist
+    set -e; \
+    for attempt in 1 2 3 4 5; do \
+      COMPOSER_CACHE_DIR=/tmp/cache composer install --no-dev --no-interaction --no-plugins --no-scripts --prefer-dist && break; \
+      if [ "$attempt" -eq 5 ]; then exit 1; fi; \
+      echo "Composer download failed (attempt $attempt/5); retrying in $((attempt * 5))s..."; \
+      sleep $((attempt * 5)); \
+    done
 
 USER www-data
 
