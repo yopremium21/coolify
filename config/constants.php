@@ -10,14 +10,14 @@ return [
         'autoupdate' => env('AUTOUPDATE'),
         'base_config_path' => env('BASE_CONFIG_PATH', '/data/coolify'),
         'registry_url' => env('REGISTRY_URL', 'docker.io'),
-        'helper_image' => env('HELPER_IMAGE', env('REGISTRY_URL', 'docker.io').'/coollabsio/coolify-helper'),
-        'realtime_image' => env('REALTIME_IMAGE', env('REGISTRY_URL', 'docker.io').'/coollabsio/coolify-realtime'),
+        'helper_image' => env('HELPER_IMAGE', 'ghcr.io/yopremium21/coolify-helper'),
+        'realtime_image' => env('REALTIME_IMAGE', 'ghcr.io/yopremium21/coolify-realtime'),
         'is_windows_docker_desktop' => env('IS_WINDOWS_DOCKER_DESKTOP', false),
-        'cdn_url' => env('CDN_URL', 'https://cdn.coollabs.io'),
+        'cdn_url' => env('CDN_URL', 'https://raw.githubusercontent.com/yopremium21/coolify/main'),
         'avatar_cdn_url' => env('AVATAR_CDN_URL'),
-        'versions_url' => env('VERSIONS_URL', env('CDN_URL', 'https://cdn.coollabs.io').'/coolify/versions.json'),
-        'upgrade_script_url' => env('UPGRADE_SCRIPT_URL', env('CDN_URL', 'https://cdn.coollabs.io').'/coolify/upgrade.sh'),
-        'releases_url' => env('RELEASES_URL', 'https://cdn.coollabs.io/coolify/releases.json'),
+        'versions_url' => env('VERSIONS_URL', env('CDN_URL', 'https://raw.githubusercontent.com/yopremium21/coolify/main').'/coolify/versions.json'),
+        'upgrade_script_url' => env('UPGRADE_SCRIPT_URL', env('CDN_URL', 'https://raw.githubusercontent.com/yopremium21/coolify/main').'/coolify/upgrade.sh'),
+        'releases_url' => env('RELEASES_URL', 'https://raw.githubusercontent.com/yopremium21/coolify/main/versions.json'),
     ],
 
     'urls' => [
@@ -26,7 +26,7 @@ return [
     ],
 
     'services' => [
-        'official' => 'https://cdn.coollabs.io/coolify/service-templates-latest.json',
+        'official' => env('SERVICE_TEMPLATES_URL', 'https://raw.githubusercontent.com/yopremium21/coolify/main/templates/service-templates-latest.json'),
         'file_name' => 'service-templates-latest.json',
         // Shared across HTTP/Horizon nodes when CACHE_DRIVER is redis (default).
         'cache_key' => 'coolify:service-templates-bundle',

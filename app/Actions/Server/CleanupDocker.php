@@ -16,14 +16,14 @@ class CleanupDocker
         $realtimeImage = config('constants.coolify.realtime_image');
         $realtimeImageVersion = config('constants.coolify.realtime_version');
         $realtimeImageWithVersion = "$realtimeImage:$realtimeImageVersion";
-        $realtimeImageWithoutPrefix = 'coollabsio/coolify-realtime';
-        $realtimeImageWithoutPrefixVersion = "coollabsio/coolify-realtime:$realtimeImageVersion";
+        $realtimeImageWithoutPrefix = 'yopremium21/coolify-realtime';
+        $realtimeImageWithoutPrefixVersion = "yopremium21/coolify-realtime:$realtimeImageVersion";
 
         $helperImageVersion = getHelperVersion();
         $helperImage = coolifyHelperImage();
         $helperImageWithVersion = "$helperImage:$helperImageVersion";
-        $helperImageWithoutPrefix = 'coollabsio/coolify-helper';
-        $helperImageWithoutPrefixVersion = "coollabsio/coolify-helper:$helperImageVersion";
+        $helperImageWithoutPrefix = 'yopremium21/coolify-helper';
+        $helperImageWithoutPrefixVersion = "yopremium21/coolify-helper:$helperImageVersion";
         $buildxMetadataVolume = isDev() && $server->isLocalhost()
             ? 'coolify-buildx'
             : '$HOME/.docker/buildx';
@@ -105,13 +105,13 @@ class CleanupDocker
 
         // Build grep pattern to exclude Coolify infrastructure images (current version only)
         // This pattern matches the image name regardless of registry prefix:
-        // - ghcr.io/coollabsio/coolify-helper:1.0.12
-        // - docker.io/coollabsio/coolify-helper:1.0.12
-        // - coollabsio/coolify-helper:1.0.12
+        // - ghcr.io/yopremium21/coolify-helper:1.0.12
+        // - docker.io/yopremium21/coolify-helper:1.0.12
+        // - yopremium21/coolify-helper:1.0.12
         // Pattern: (^|/)coollabsio/coolify-(helper|realtime):VERSION$
         $escapedHelperVersion = preg_replace('/([.\\\\+*?\[\]^$(){}|])/', '\\\\$1', $helperImageVersion);
         $escapedRealtimeVersion = preg_replace('/([.\\\\+*?\[\]^$(){}|])/', '\\\\$1', $realtimeImageVersion);
-        $infraExcludePattern = "(^|/)coollabsio/coolify-helper:{$escapedHelperVersion}$|(^|/)coollabsio/coolify-realtime:{$escapedRealtimeVersion}$";
+        $infraExcludePattern = "(^|/)yopremium21/coolify-helper:{$escapedHelperVersion}$|(^|/)yopremium21/coolify-realtime:{$escapedRealtimeVersion}$";
 
         // Delete unused images that:
         // - Are not application images (don't match app repos)

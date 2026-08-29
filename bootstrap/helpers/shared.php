@@ -4190,14 +4190,7 @@ function coolifyRegistryUrl(): string
 
 function coolifyHelperImage(): string
 {
-    $configuredHelperImage = config('constants.coolify.helper_image');
-    $configuredDefaultHelperImage = config('constants.coolify.registry_url', 'docker.io').'/coollabsio/coolify-helper';
-
-    if ($configuredHelperImage !== $configuredDefaultHelperImage) {
-        return $configuredHelperImage;
-    }
-
-    return coolifyRegistryUrl().'/coollabsio/coolify-helper';
+    return config('constants.coolify.helper_image', 'ghcr.io/yopremium21/coolify-helper');
 }
 
 function getHelperVersion(): string
