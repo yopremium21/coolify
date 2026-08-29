@@ -7250,6 +7250,7 @@ All notable changes to this project will be documented in this file.
 - *(release)* Clarify branch strategy and SHA build flow
 - *(ui)* Clarify application image retention cleanup options
 - Design external TLS redirect control
+- Update changelog
 
 ### ⚡ Performance
 
